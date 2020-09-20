@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   fetch_wild_pokemon,
   fetch_pokemon_by_id,
-  deselect_pokemon,
+  deselect_wild,
   catch_pokemon,
   clear_wild_pokemon,
 } from "../app/ducks/pokemon";
@@ -12,7 +12,7 @@ const Catch = ({
   fetch_wild_pokemon,
   wild_pokemon,
   fetch_pokemon_by_id,
-  deselect_pokemon,
+  deselect_wild,
   catch_pokemon,
   clear_wild_pokemon,
   selected,
@@ -20,7 +20,10 @@ const Catch = ({
   useEffect(() => {
     fetch_wild_pokemon();
 
-    return clear_wild_pokemon();
+    return () => {
+      deselect_wild();
+      clear_wild_pokemon();
+    };
   }, []);
   return (
     <div>
@@ -31,7 +34,7 @@ const Catch = ({
       ))}
       <hr />
       <p
-        // onClick={() => deselect_pokemon()}
+        // onClick={() => deselect_wild()}
         onClick={() => catch_pokemon(selected)}
       >
         {selected?.name}
@@ -43,7 +46,7 @@ const Catch = ({
 const mapStateToProps = (state) => {
   return {
     wild_pokemon: state.pokemon.wild_pokemon,
-    selected: state.pokemon.selected,
+    selected: state.pokemon.selected_wild,
     is_loading: state.pokemon.is_loading,
   };
 };
@@ -51,7 +54,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetch_wild_pokemon,
   fetch_pokemon_by_id,
-  deselect_pokemon,
+  deselect_wild,
   catch_pokemon,
   clear_wild_pokemon,
 };
