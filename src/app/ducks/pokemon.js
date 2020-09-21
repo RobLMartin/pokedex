@@ -84,8 +84,20 @@ export const fetch_pokemon_by_id = (url) => (dispatch) => {
     });
 };
 
+<<<<<<< Updated upstream
 export const deselect_pokemon = () => (dispatch) => {
   dispatch({ type: DESELECT_POKEMON });
+=======
+export const deselect_wild = () => (dispatch) => {
+  dispatch({ type: DESELECT_WILD });
+};
+
+export const select_adopted = (selected_pokemon) => (dispatch) => {
+  dispatch({ type: SELECT_ADOPTED, payload: selected_pokemon });
+  if (typeof selected_pokemon === "object") {
+    localStorage.setItem("selected_adopted", JSON.stringify(selected_pokemon));
+  }
+>>>>>>> Stashed changes
 };
 export const clear_wild_pokemon = () => (dispatch) => {
   dispatch({ type: CLEAR_WILD_POKEMON });

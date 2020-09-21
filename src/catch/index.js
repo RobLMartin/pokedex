@@ -7,6 +7,15 @@ import {
   catch_pokemon,
   clear_wild_pokemon,
 } from "../app/ducks/pokemon";
+<<<<<<< Updated upstream
+=======
+import PokemonCard from "./pokemon.card";
+import Layout from "./layout";
+import Back from "./back";
+import Next from "./next";
+import CatchButton from "./catch.button";
+import Controls from "./controls";
+>>>>>>> Stashed changes
 
 const Catch = ({
   fetch_wild_pokemon,
@@ -23,6 +32,7 @@ const Catch = ({
     return clear_wild_pokemon();
   }, []);
   return (
+<<<<<<< Updated upstream
     <div>
       {wild_pokemon.map((pokemon) => (
         <p key={pokemon.url} onClick={() => fetch_pokemon_by_id(pokemon.url)}>
@@ -37,6 +47,30 @@ const Catch = ({
         {selected?.name}
       </p>
     </div>
+=======
+    <Layout>
+      <Back onClick={() => history.push("/pokedex")} />
+      {wild_pokemon.length > 0 && (
+        <div style={{ margin: "auto" }}>
+          <PokemonCard
+            key={wild_pokemon[page].url}
+            name={wild_pokemon[page]?.name}
+            {...selected}
+            onClick={() => fetch_pokemon_by_id(wild_pokemon[page].url)}
+          />
+          <Controls>
+            <CatchButton
+              onClick={() => handle_catch(selected)}
+              isVisible={selected}
+            />
+            <Next onClick={handle_change_page} isVisible={page < 9}>
+              NEXT {page + 1 + "-" + wild_pokemon.length}
+            </Next>
+          </Controls>
+        </div>
+      )}
+    </Layout>
+>>>>>>> Stashed changes
   );
 };
 
