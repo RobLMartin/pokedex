@@ -6,6 +6,7 @@ import {
   deselect_wild,
   catch_pokemon,
   clear_wild_pokemon,
+  rename_pokemon,
 } from "../app/ducks/pokemon";
 import PokemonCard from "./pokemon.card";
 import Layout from "./layout";
@@ -13,6 +14,7 @@ import Back from "./back";
 import Next from "./next";
 import CatchButton from "./catch.button";
 import Controls from "./controls";
+import Rename from "./rename";
 
 const Catch = ({
   fetch_wild_pokemon,
@@ -22,9 +24,12 @@ const Catch = ({
   catch_pokemon,
   clear_wild_pokemon,
   selected,
+  rename_pokemon,
   history,
 }) => {
   const [page, setPage] = useState(0);
+  const [new_name, setNewName] = useState("");
+
   useEffect(() => {
     fetch_wild_pokemon();
 
@@ -58,6 +63,10 @@ const Catch = ({
             onClick={() => fetch_pokemon_by_id(wild_pokemon[page].url)}
           />
           <Controls>
+            <Rename
+              isVisible={selected}
+              onChange={(e) => rename_pokemon(e.target.value, selected)}
+            />
             <CatchButton
               onClick={() => handle_catch(selected)}
               isVisible={selected}
@@ -86,6 +95,7 @@ const mapDispatchToProps = {
   deselect_wild,
   catch_pokemon,
   clear_wild_pokemon,
+  rename_pokemon,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Catch);

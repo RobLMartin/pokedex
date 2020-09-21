@@ -5,6 +5,7 @@ export const SELECT_ADOPTED = "pokedex/pokemon/SELECT_ADOPTED";
 export const CLEAR_WILD_POKEMON = "pokedex/pokemon/CLEAR_WILD_POKEMON";
 export const GET_MY_POKEMON = "pokedex/pokemon/GET_MY_POKEMON";
 export const CATCH_POKEMON = "pokedex/pokemon/CATCH_POKEMON";
+export const RENAME_POKEMON = "pokedex/pokemon/RENAME_POKEMON";
 export const IS_LOADING = "pokedex/pokemon/IS_LOADING";
 export const HAS_ERRORED = "pokedex/pokemon/HAS_ERRORED";
 
@@ -33,6 +34,8 @@ export default function pokemon(state = INITIAL_STATE, { type, payload }) {
       return { ...state, wild_pokemon: [] };
     case CATCH_POKEMON:
       return { ...state, my_pokemon: [payload, ...state.my_pokemon] };
+    case RENAME_POKEMON:
+      return { ...state, selected_wild: payload };
     case IS_LOADING:
       return { ...state, is_loading: payload };
     case HAS_ERRORED:
@@ -102,6 +105,11 @@ export const select_adopted = (selected_pokemon) => (dispatch) => {
 
 export const clear_wild_pokemon = () => (dispatch) => {
   dispatch({ type: CLEAR_WILD_POKEMON });
+};
+
+export const rename_pokemon = (name, pokemon) => (dispatch) => {
+  const new_pokemon = { ...pokemon, name };
+  dispatch({ type: RENAME_POKEMON, payload: new_pokemon });
 };
 
 export const catch_pokemon = (pokemon) => (dispatch) => {
