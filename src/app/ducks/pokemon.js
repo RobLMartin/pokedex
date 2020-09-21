@@ -1,6 +1,6 @@
 export const GET_POKEMON = "pokedex/pokemon/GET_POKEMON";
 export const GET_POKEMON_BY_ID = "pokedex/pokemon/GET_POKEMON_BY_ID";
-export const DESELECT_WILD = "pokedex/pokemon/DESELECT_POKEMON";
+export const DESELECT_WILD = "pokedex/pokemon/DESELECT_WILD";
 export const SELECT_ADOPTED = "pokedex/pokemon/SELECT_ADOPTED";
 export const CLEAR_WILD_POKEMON = "pokedex/pokemon/CLEAR_WILD_POKEMON";
 export const GET_MY_POKEMON = "pokedex/pokemon/GET_MY_POKEMON";
@@ -95,10 +95,11 @@ export const deselect_wild = () => (dispatch) => {
 export const select_adopted = (selected_pokemon) => (dispatch) => {
   dispatch({ type: SELECT_ADOPTED, payload: selected_pokemon });
 
-  if (typeof select_adopted === "object") {
+  if (typeof selected_pokemon === "object") {
     localStorage.setItem("selected_adopted", JSON.stringify(selected_pokemon));
   }
 };
+
 export const clear_wild_pokemon = () => (dispatch) => {
   dispatch({ type: CLEAR_WILD_POKEMON });
 };

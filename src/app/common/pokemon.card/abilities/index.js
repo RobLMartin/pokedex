@@ -9,7 +9,7 @@ const Abilities = ({ list = [] }) => {
           <strong>ABILITIES</strong>
         </Text>
         {list.map((item) => (
-          <Text>{item.ability.name.toUpperCase()}</Text>
+          <Text key={item.ability.name}>{item.ability.name.toUpperCase()}</Text>
         ))}
       </List>
     );
