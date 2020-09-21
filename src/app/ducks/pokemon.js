@@ -1,6 +1,6 @@
 export const GET_POKEMON = "pokedex/pokemon/GET_POKEMON";
 export const GET_POKEMON_BY_ID = "pokedex/pokemon/GET_POKEMON_BY_ID";
-export const DESELECT_WILD = "pokedex/pokemon/DESELECT_POKEMON";
+export const DESELECT_WILD = "pokedex/pokemon/DESELECT_WILD";
 export const SELECT_ADOPTED = "pokedex/pokemon/SELECT_ADOPTED";
 export const CLEAR_WILD_POKEMON = "pokedex/pokemon/CLEAR_WILD_POKEMON";
 export const GET_MY_POKEMON = "pokedex/pokemon/GET_MY_POKEMON";
@@ -86,10 +86,6 @@ export const fetch_pokemon_by_id = (url) => (dispatch) => {
       dispatch({ type: IS_LOADING, payload: false });
       dispatch({ type: HAS_ERRORED, payload: err });
     });
-};
-
-export const deselect_pokemon = () => (dispatch) => {
-  dispatch({ type: DESELECT_POKEMON });
 };
 
 export const deselect_wild = () => (dispatch) => {

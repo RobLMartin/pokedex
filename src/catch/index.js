@@ -12,6 +12,7 @@ import Layout from "./layout";
 import Back from "./back";
 import Next from "./next";
 import CatchButton from "./catch.button";
+import Controls from "./controls";
 
 const Catch = ({
   fetch_wild_pokemon,
@@ -56,7 +57,6 @@ const Catch = ({
             {...selected}
             onClick={() => fetch_pokemon_by_id(wild_pokemon[page].url)}
           />
-<<<<<<< HEAD
           <Controls>
             <CatchButton
               onClick={() => handle_catch(selected)}
@@ -66,23 +66,6 @@ const Catch = ({
               NEXT {page + 1 + "-" + wild_pokemon.length}
             </Next>
           </Controls>
-=======
-          <div
-            style={{
-              display: "flex",
-              gap: "1em",
-              justifyContent: "flex-end",
-              marginTop: "3em",
-            }}
-          >
-            {selected && <CatchButton onClick={() => handle_catch(selected)} />}
-            {page < 9 && (
-              <Next onClick={handle_change_page}>
-                NEXT {page + 1 + "-" + wild_pokemon.length}
-              </Next>
-            )}
-          </div>
->>>>>>> master
         </div>
       )}
     </Layout>
