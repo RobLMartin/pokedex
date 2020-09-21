@@ -43,12 +43,12 @@ const Catch = ({
 
   const handle_catch = (pokemon) => {
     catch_pokemon(pokemon);
-    history.push("/pokedex");
+    history.push("/");
   };
 
   return (
     <Layout>
-      <Back onClick={() => history.push("/pokedex")} />
+      <Back onClick={() => history.push("/")} />
       {wild_pokemon.length > 0 && (
         <div style={{ margin: "auto" }}>
           <PokemonCard

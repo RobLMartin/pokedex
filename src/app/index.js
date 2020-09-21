@@ -13,8 +13,8 @@ function App() {
       <Router>
         <Switch>
           <Canvas>
-            <Route exact path="/pokedex" component={MyPokemon} />
-            <Route path="/pokedex/catch" component={Catch} />
+            <Route exact path="/" component={MyPokemon} />
+            <Route path="/catch" component={Catch} />
           </Canvas>
         </Switch>
       </Router>
