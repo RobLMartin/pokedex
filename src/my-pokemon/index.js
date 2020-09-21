@@ -33,7 +33,7 @@ const MyPokemon = ({
 
   return (
     <Layout>
-      <Catch onClick={() => history.push("/pokedex/catch")} />
+      <Catch onClick={() => history.push("/catch")} />
       <PokemonCard Classname="" {...selected} />
       <Roster list={my_pokemon} onClick={select_adopted} />
     </Layout>
