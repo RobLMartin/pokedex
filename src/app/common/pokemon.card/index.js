@@ -28,8 +28,8 @@ export { PokemonCard };
 
 const Card = styled.div`
   position: relative;
-  width: 1000px;
-  height: 600px;
+  width: 800px;
+  height: 500px;
   border-radius: 10px;
   padding: 2em;
   overflow: hidden;
