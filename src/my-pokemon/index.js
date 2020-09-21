@@ -5,9 +5,12 @@ import {
   fetch_pokemon_by_id,
   select_adopted,
 } from "../app/ducks/pokemon";
-import Button from "@material-ui/core/Button";
+import Layout from "./layout";
+import PokemonCard from "./pokemon.card";
+import Roster from "./roster";
+import Catch from "./catch";
 
-const PokemonList = ({
+const MyPokemon = ({
   history,
   fetch_my_pokemon,
   my_pokemon,
@@ -29,21 +32,11 @@ const PokemonList = ({
   };
 
   return (
-    <div>
-      {my_pokemon.map((pokemon) => (
-        <p key={pokemon.id} onClick={() => select_adopted(pokemon)}>
-          {pokemon.name}
-        </p>
-      ))}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => history.push("/pokedex/catch")}
-      >
-        Catch a Pokemon
-      </Button>
-      <p>{selected?.name}</p>
-    </div>
+    <Layout>
+      <Catch onClick={() => history.push("/pokedex/catch")} />
+      <PokemonCard Classname="" {...selected} />
+      <Roster list={my_pokemon} onClick={select_adopted} />
+    </Layout>
   );
 };
 
@@ -60,4 +53,4 @@ const mapDispatchToProps = {
   select_adopted,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);
+export default connect(mapStateToProps, mapDispatchToProps)(MyPokemon);

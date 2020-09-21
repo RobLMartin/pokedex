@@ -30,7 +30,7 @@ export default function pokemon(state = INITIAL_STATE, { type, payload }) {
     case SELECT_ADOPTED:
       return { ...state, selected_adopted: payload };
     case CLEAR_WILD_POKEMON:
-      return { ...state, wild_pokemon: null };
+      return { ...state, wild_pokemon: [] };
     case CATCH_POKEMON:
       return { ...state, my_pokemon: [payload, ...state.my_pokemon] };
     case IS_LOADING:
