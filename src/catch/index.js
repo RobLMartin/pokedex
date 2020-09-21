@@ -3,51 +3,49 @@ import { connect } from "react-redux";
 import {
   fetch_wild_pokemon,
   fetch_pokemon_by_id,
-  deselect_pokemon,
+  deselect_wild,
   catch_pokemon,
   clear_wild_pokemon,
 } from "../app/ducks/pokemon";
-<<<<<<< Updated upstream
-=======
 import PokemonCard from "./pokemon.card";
 import Layout from "./layout";
 import Back from "./back";
 import Next from "./next";
 import CatchButton from "./catch.button";
-import Controls from "./controls";
->>>>>>> Stashed changes
 
 const Catch = ({
   fetch_wild_pokemon,
   wild_pokemon,
   fetch_pokemon_by_id,
-  deselect_pokemon,
+  deselect_wild,
   catch_pokemon,
   clear_wild_pokemon,
   selected,
+  history,
 }) => {
+  const [page, setPage] = useState(0);
   useEffect(() => {
     fetch_wild_pokemon();
 
-    return clear_wild_pokemon();
+    return () => {
+      deselect_wild();
+      clear_wild_pokemon();
+    };
   }, []);
+
+  const handle_change_page = () => {
+    deselect_wild();
+    if (page < 9) {
+      setPage(page + 1);
+    }
+  };
+
+  const handle_catch = (pokemon) => {
+    catch_pokemon(pokemon);
+    history.push("/pokedex");
+  };
+
   return (
-<<<<<<< Updated upstream
-    <div>
-      {wild_pokemon.map((pokemon) => (
-        <p key={pokemon.url} onClick={() => fetch_pokemon_by_id(pokemon.url)}>
-          {pokemon.name}
-        </p>
-      ))}
-      <hr />
-      <p
-        // onClick={() => deselect_pokemon()}
-        onClick={() => catch_pokemon(selected)}
-      >
-        {selected?.name}
-      </p>
-    </div>
-=======
     <Layout>
       <Back onClick={() => history.push("/pokedex")} />
       {wild_pokemon.length > 0 && (
@@ -70,7 +68,6 @@ const Catch = ({
         </div>
       )}
     </Layout>
->>>>>>> Stashed changes
   );
 };
 
