@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Canvas } from "./common";
-import PokemonList from "../pokemon.list";
+import MyPokemon from "../my-pokemon";
 import Catch from "../catch";
 
 import store from "./store";
@@ -10,14 +10,14 @@ import { Provider } from "react-redux";
 function App() {
   return (
     <Provider store={store}>
-      <Canvas>
-        <Router>
-          <Switch>
-            <Route exact path="/pokedex" component={PokemonList} />
+      <Router>
+        <Switch>
+          <Canvas>
+            <Route exact path="/pokedex" component={MyPokemon} />
             <Route path="/pokedex/catch" component={Catch} />
-          </Switch>
-        </Router>
-      </Canvas>
+          </Canvas>
+        </Switch>
+      </Router>
     </Provider>
   );
 }

@@ -56,6 +56,7 @@ const Catch = ({
             {...selected}
             onClick={() => fetch_pokemon_by_id(wild_pokemon[page].url)}
           />
+<<<<<<< HEAD
           <Controls>
             <CatchButton
               onClick={() => handle_catch(selected)}
@@ -65,6 +66,23 @@ const Catch = ({
               NEXT {page + 1 + "-" + wild_pokemon.length}
             </Next>
           </Controls>
+=======
+          <div
+            style={{
+              display: "flex",
+              gap: "1em",
+              justifyContent: "flex-end",
+              marginTop: "3em",
+            }}
+          >
+            {selected && <CatchButton onClick={() => handle_catch(selected)} />}
+            {page < 9 && (
+              <Next onClick={handle_change_page}>
+                NEXT {page + 1 + "-" + wild_pokemon.length}
+              </Next>
+            )}
+          </div>
+>>>>>>> master
         </div>
       )}
     </Layout>
@@ -74,7 +92,7 @@ const Catch = ({
 const mapStateToProps = (state) => {
   return {
     wild_pokemon: state.pokemon.wild_pokemon,
-    selected: state.pokemon.selected,
+    selected: state.pokemon.selected_wild,
     is_loading: state.pokemon.is_loading,
   };
 };
@@ -82,7 +100,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetch_wild_pokemon,
   fetch_pokemon_by_id,
-  deselect_pokemon,
+  deselect_wild,
   catch_pokemon,
   clear_wild_pokemon,
 };

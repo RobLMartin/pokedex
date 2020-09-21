@@ -1,6 +1,7 @@
 export const GET_POKEMON = "pokedex/pokemon/GET_POKEMON";
 export const GET_POKEMON_BY_ID = "pokedex/pokemon/GET_POKEMON_BY_ID";
-export const DESELECT_POKEMON = "pokedex/pokemon/DESELECT_POKEMON";
+export const DESELECT_WILD = "pokedex/pokemon/DESELECT_POKEMON";
+export const SELECT_ADOPTED = "pokedex/pokemon/SELECT_ADOPTED";
 export const CLEAR_WILD_POKEMON = "pokedex/pokemon/CLEAR_WILD_POKEMON";
 export const GET_MY_POKEMON = "pokedex/pokemon/GET_MY_POKEMON";
 export const CATCH_POKEMON = "pokedex/pokemon/CATCH_POKEMON";
@@ -10,7 +11,8 @@ export const HAS_ERRORED = "pokedex/pokemon/HAS_ERRORED";
 const INITIAL_STATE = {
   my_pokemon: [],
   wild_pokemon: [],
-  selected: null,
+  selected_wild: null,
+  selected_adopted: null,
   error: null,
   is_loading: false,
 };
@@ -22,11 +24,13 @@ export default function pokemon(state = INITIAL_STATE, { type, payload }) {
     case GET_MY_POKEMON:
       return { ...state, my_pokemon: payload };
     case GET_POKEMON_BY_ID:
-      return { ...state, selected: payload };
-    case DESELECT_POKEMON:
-      return { ...state, selected: null };
+      return { ...state, selected_wild: payload };
+    case DESELECT_WILD:
+      return { ...state, selected_wild: null };
+    case SELECT_ADOPTED:
+      return { ...state, selected_adopted: payload };
     case CLEAR_WILD_POKEMON:
-      return { ...state, selected: null };
+      return { ...state, wild_pokemon: [] };
     case CATCH_POKEMON:
       return { ...state, my_pokemon: [payload, ...state.my_pokemon] };
     case IS_LOADING:
@@ -84,21 +88,22 @@ export const fetch_pokemon_by_id = (url) => (dispatch) => {
     });
 };
 
-<<<<<<< Updated upstream
 export const deselect_pokemon = () => (dispatch) => {
   dispatch({ type: DESELECT_POKEMON });
-=======
+};
+
 export const deselect_wild = () => (dispatch) => {
   dispatch({ type: DESELECT_WILD });
 };
 
 export const select_adopted = (selected_pokemon) => (dispatch) => {
   dispatch({ type: SELECT_ADOPTED, payload: selected_pokemon });
+
   if (typeof selected_pokemon === "object") {
     localStorage.setItem("selected_adopted", JSON.stringify(selected_pokemon));
   }
->>>>>>> Stashed changes
 };
+
 export const clear_wild_pokemon = () => (dispatch) => {
   dispatch({ type: CLEAR_WILD_POKEMON });
 };
@@ -117,6 +122,6 @@ export const catch_pokemon = (pokemon) => (dispatch) => {
   const store_data = JSON.stringify(update_my_pokemon);
 
   localStorage.setItem("my_pokemon", store_data);
-  dispatch({ type: DESELECT_POKEMON });
+  dispatch({ type: DESELECT_WILD });
   dispatch({ type: IS_LOADING, payload: false });
 };
